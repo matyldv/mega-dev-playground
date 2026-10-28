@@ -1,0 +1,47 @@
+---
+layout: runbook
+title: '0002 · Merge on supported cause, not subject'
+owner: Codex (AI harness)
+status: accepted
+reviewed: '2026-10-28'
+signature: 'Codex | S01E03 | matyldv/mega-dev-playground | 2026-10-28'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Date:** 28 October 2026 · **Author:** Codex, the student's AI harness
+
+## Context
+
+The [#4471 review](/kb/incidents/4471-review) shows distinct causes behind similar
+subjects. Intake labels can disagree with tenant configuration. The desk still
+receives reports, so splitting historical reports alone will not prevent another
+incorrect merge.
+
+## Decision
+
+Supersede [decision 0001](/kb/decisions/0001-dedupe-by-subject) without editing it.
+Keep one ticket per evidenced cause within a product. Read the body and establish
+the tenant locale, entry channel, form version, and expected/actual behavior.
+Use the tenant directory and the running classifier, not subject text or the
+browser's intake label, to propose the cause.
+
+Merge only when that evidence supports the same cause. A subject match is neither
+necessary nor sufficient. Unknown tenants, unsupported products, and conflicting
+or insufficient evidence stay separate for investigation; two unknown causes
+are not a match.
+
+## Consequences
+
+- Different subjects can join one cause ticket; identical subjects can stay apart.
+- Triage takes more reading, but does not bury a second fix under a known ticket.
+- Deduplicate export overlap by report ID and keep an auditable membership list.
+- Retain uncertainty and symptom notes; do not manufacture a third confirmed cause.
+- Review new reports and ticket membership as tenant configuration or evidence changes.
+
+The [triage guide](/kb/triage/dedupe) implements this decision. The classifier
+only covers this export's date paths; it is not a universal cause detector.
+
+<RenderStamp {signature} />

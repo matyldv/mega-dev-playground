@@ -1,0 +1,89 @@
+---
+layout: runbook
+title: '#4471 review · two causes behind one known ticket'
+owner: Codex (AI harness)
+status: reviewed snapshot — fixes not shipped
+reviewed: '2026-10-28'
+signature: 'Codex | S01E03 | matyldv/mega-dev-playground | 2026-10-28'
+---
+
+<script>
+  import ReviewSummary from '#lib/kb/ReviewSummary.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import QueueAudit from '#lib/kb/QueueAudit.svelte';
+  import ReportEvidence from '#lib/kb/ReportEvidence.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+This review uses the **4 October 2026 export**, not a live support queue.
+It replaces the [old incident explanation](/kb/incidents/4471), not the underlying
+product code. The export describes `sched-prod` date reports; the support desk
+handles other products too, so a cross-product match needs product evidence.
+
+<Callout kind="warn">
+“Known” does not mean one cause, fixed, or safe to merge into. Keep the parser and
+form-hint tickets separate. New reports still need causal triage.
+</Callout>
+
+## Count reports, not export rows or browser guesses
+
+<ReviewSummary />
+
+The cause table below preserves the **original export's desk-ticket state**.
+The separate GitHub tickets linked above are the result of this review; they
+do not change the historical `mergedInto` fields.
+
+<CauseTable ticket={4471} />
+
+The classification runs the exported `causeOf` against the tenant directory.
+It asks the platform for tenant date order. Day-first tenants using a
+`booking-v3` form have the hint problem: the field prints `MM/DD/YYYY` while
+the form reads the tenant's day-first order. Other day-first paths use the
+shared month-first parser. `booking-v2` prints `DD/MM/YYYY`.
+
+These paths need different fixes: correct shared parsing for the parser ticket;
+make the booking-v3 field hint and its interpretation agree for the hint ticket.
+Do not count a browser's `en-US` locale as the tenant's date order. Report
+R-41230, for example, is a booking-v3 form report from `copper.studio` (`es-ES`)
+tagged `parser` at intake, but the tenant-based classifier places it in `hint`.
+
+## What the timeline actually shows
+
+<QueueTimeline ticket={4471} />
+
+<QueueAudit />
+
+## Keep the unresolved symptom evidence
+
+<ReportEvidence />
+
+## Change the rule while the desk keeps working
+
+The old [decision 0001](/kb/decisions/0001-dedupe-by-subject) is an accepted,
+immutable record from 11 June 2024. Its subject-only rule is superseded by
+[decision 0002](/kb/decisions/0002-dedupe-by-cause).
+The live [triage page](/kb/triage/dedupe) now follows the replacement rule.
+
+Read the report body. Establish product, tenant, date order, entry channel,
+form version, expected result, and actual result. Merge only when the evidence
+supports the same cause as an open ticket. Same subject is not enough;
+different subjects can describe the same cause. Unknown tenant, unmatched
+product, or conflicting symptom evidence means **keep separate and investigate**.
+The explorer shows the exported routing model, not proof of a production fix.
+
+Page freshness is also evidence: the old triage and decision were last reviewed
+in 2024. Read their stale warnings and check the rendered components, not just
+the prose. A recent review date on the old incident did not make its one-bug
+claim true.
+
+## Verify before closing
+
+- Keep one report ID in one cause ticket; preserve report membership and intake-tag disagreements.
+- Test day-first parsing with ambiguous and unambiguous dates, and retain month-first behavior.
+- Test booking-v3 hint/parse agreement for each affected tenant locale, including a browser/tenant locale mismatch.
+- Reproduce the flagged timing symptoms before deciding whether they need another ticket.
+- Check received reports after each actual deployment. This export cannot prove that either fix shipped.
+
+<RenderStamp {signature} />

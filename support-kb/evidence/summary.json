@@ -1,0 +1,82 @@
+{
+  "snapshot": "2026-10-04",
+  "reviewed": "2026-10-28",
+  "rows": 427,
+  "uniqueReports": 412,
+  "duplicateRows": 15,
+  "intakeDisagreements": 38,
+  "firstReceived": "2026-04-01",
+  "lastReceived": "2026-10-04",
+  "firstMerged": "2026-07-02",
+  "busiestMergeDay": [
+    "2026-07-02",
+    184
+  ],
+  "months": [
+    {
+      "month": "2026-04",
+      "received": 56,
+      "merged": 0
+    },
+    {
+      "month": "2026-05",
+      "received": 57,
+      "merged": 0
+    },
+    {
+      "month": "2026-06",
+      "received": 66,
+      "merged": 0
+    },
+    {
+      "month": "2026-07",
+      "received": 73,
+      "merged": 252
+    },
+    {
+      "month": "2026-08",
+      "received": 68,
+      "merged": 67
+    },
+    {
+      "month": "2026-09",
+      "received": 80,
+      "merged": 81
+    },
+    {
+      "month": "2026-10",
+      "received": 12,
+      "merged": 12
+    }
+  ],
+  "groups": [
+    {
+      "cause": "parser",
+      "taggedAs": {
+        "parser": 356,
+        "hint": 23
+      },
+      "tenants": 11,
+      "firstSeen": "2026-04-01",
+      "lastSeen": "2026-10-04",
+      "mergedInto": [
+        4471
+      ],
+      "count": 379
+    },
+    {
+      "cause": "hint",
+      "taggedAs": {
+        "parser": 15,
+        "hint": 18
+      },
+      "tenants": 3,
+      "firstSeen": "2026-04-17",
+      "lastSeen": "2026-09-22",
+      "mergedInto": [
+        4471
+      ],
+      "count": 33
+    }
+  ]
+}

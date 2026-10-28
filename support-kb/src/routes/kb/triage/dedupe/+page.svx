@@ -1,0 +1,42 @@
+---
+layout: runbook
+title: 'Triage: duplicate reports'
+owner: support desk
+status: accepted
+reviewed: '2026-10-28'
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+A busy morning can bring similar reports about different problems. Keep one ticket per
+supported cause within a product, with a count of unique report IDs.
+
+## The rule
+
+A report is a duplicate when evidence supports the **same cause**, not the same subject
+([decision 0002](/kb/decisions/0002-dedupe-by-cause), superseding the unchanged decision 0001):
+
+1. Read the body and confirm product, tenant, expected date, actual date, and entry channel.
+2. Look up the tenant's locale and form version; browser locale and intake tags are guesses.
+3. For the exported date paths, compare the classifier's cause with an open cause ticket.
+4. Merge only when the evidence agrees. If unknown or conflicting, keep separate and investigate.
+5. Deduplicate by report ID, preserve symptoms, and update the cause ticket's count.
+
+<Callout>
+The desk serves every product. This explorer models the exported date paths only.
+A matching subject is not enough; two missing causes are not the same cause.
+See the <a href="/kb/incidents/4471-review">#4471 review</a> before routing these reports.
+</Callout>
+
+## Try it
+
+<DedupeExplorer />
+
+## When you are unsure
+
+Keep separate. Ask for tenant configuration, original input, expected/actual output, timezone,
+and a reproducible case. Preserve a suspected one-day shift even when the classifier proposes
+the parser group. Do not close a report merely because #4471 is marked known.
