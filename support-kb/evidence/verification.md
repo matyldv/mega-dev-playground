@@ -81,17 +81,24 @@ desk's parser fix. A separately approved correction comment now records the
 5 October fix and the 379-report scope.
 
 The next submission advanced to a different rejection: the course could not
-find the KB page. The project has been moved from the extra `support-kb/`
-directory to the repository root, matching the documented `src/routes/kb/`
-layout. The root README now links directly to the signed source, rendered HTML,
-and desk-view screenshots. Existing export data and accepted decision 0001 are
-unchanged. Earlier GitHub issue descriptions refer to the earlier layout; its
-files remain available in the original published commits.
+find the KB page. Commit 336c5c8 moved the project from `support-kb/` to the
+repository root and added direct README links. This did not resolve the course's
+page-discovery rejection. The subsequent proposed issue-body edit was declined
+and did not run.
 
 Nine tests and the build pass after the move. The review source, its rendered
 HTML, and accepted decision 0001 are byte-for-byte identical to their
 pre-move versions. The restarted localhost preview displays the review,
 both issue links, the engineering outcomes, and desk ref DR-8V74-D6B5.
 
-The layout change is local and requires approval before publication. The
+The student requested restoration of the original `support-kb/` paths.
+The project, build outputs, evidence generator, and README links now use that
+layout again. No GitHub issue changes are needed to restore their original
+links. The engineering-outcome corrections are preserved.
+All nine tests and the build pass in the restored location. The review source,
+rendered review, evidence generator, and accepted decision 0001 match their
+versions in commit 52cb253 byte for byte. A fresh browser tab displays the
+restored localhost review.
+
+This restoration is local and requires approval before publication. The
 Challenge remains unsolved.
