@@ -39,9 +39,9 @@ Test ambiguous dates (7 April versus 4 July), unambiguous day-first dates, all a
 
 ## Audit trail and ongoing triage
 
-- Complete membership: [parser-report-ids.json](https://github.com/matyldv/mega-dev-playground/blob/main/support-kb/evidence/parser-report-ids.json).
-- Signed KB review source: [4471-review](https://github.com/matyldv/mega-dev-playground/blob/main/support-kb/src/routes/kb/incidents/4471-review/+page.svx).
-- Rendered review: [HTML](https://github.com/matyldv/mega-dev-playground/blob/main/support-kb/rendered/kb/incidents/4471-review/index.html).
+- Complete membership: [parser-report-ids.json](https://github.com/matyldv/mega-dev-playground/blob/main/evidence/parser-report-ids.json).
+- Signed KB review source: [4471-review](https://github.com/matyldv/mega-dev-playground/blob/main/src/routes/kb/incidents/4471-review/+page.svx).
+- Rendered review: [HTML](https://github.com/matyldv/mega-dev-playground/blob/main/rendered/kb/incidents/4471-review/index.html).
 - Decision 0002 supersedes subject-only merging; decision 0001 remains unchanged. Read bodies and match supported cause within a product. Preserve unknown or conflicting evidence separately.
 - The July merge spike is desk activity; reports were already arriving in April and continued afterward. `known` is not proof of one bug or a shipped fix.
 

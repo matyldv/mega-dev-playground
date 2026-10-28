@@ -9,6 +9,19 @@ import { rows, notes, tenants, tenantOf } from '../scripts/data.mjs';
 
 const review = reviewReports(rows, tenantOf);
 
+test('repository README links to the root-level signed page and desk views', () => {
+  const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
+  for (const path of [
+    'src/routes/kb/incidents/4471-review/+page.svx',
+    'rendered/kb/incidents/4471-review/index.html',
+    'evidence/review-preview.jpg',
+    'evidence/review-signature-preview.jpg',
+  ]) {
+    assert.ok(readme.includes(`](${path})`), `Missing direct link: ${path}`);
+    assert.ok(readFileSync(new URL(`../${path}`, import.meta.url)).length > 0, path);
+  }
+});
+
 test('later engineering update distinguishes a fixed parser from a retired form', () => {
   const update = JSON.parse(readFileSync(new URL('../src/lib/data/engineering-update.json', import.meta.url), 'utf8'));
   assert.equal(update.closedAt, '2026-10-05');

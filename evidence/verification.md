@@ -18,7 +18,7 @@
 
 ## Automated checks
 
-`npm test`: eight tests covering the engineering outcomes, membership, intake disagreement, tenant
+`npm test`: nine tests covering publication paths, engineering outcomes, membership, intake disagreement, tenant
 configuration, merge/non-merge behavior, unknown causes, symptom notes, timeline,
 signature generation, and protected export files.
 
@@ -74,7 +74,24 @@ The student separately approved reopening hint issue #2 and closing it again as
 not planned, with a public explanation citing form retirement. The parser keeps
 its completed reason because the engineering update marks it fixed.
 
-At this correction checkpoint, both closure reasons match the dated update.
-The KB correction is local and requires approval before its next push. Eight
-tests pass; the rendered page retains both issue links, all flagged symptoms,
-and the same signature-derived desk reference. The Challenge remains unsolved.
+Commit 52cb253 published the engineering-outcome correction. The course still
+rejected the ticket closure. An individually approved read of parser issue #1
+showed that its only comment closed the investigation without recording the
+desk's parser fix. A separately approved correction comment now records the
+5 October fix and the 379-report scope.
+
+The next submission advanced to a different rejection: the course could not
+find the KB page. The project has been moved from the extra `support-kb/`
+directory to the repository root, matching the documented `src/routes/kb/`
+layout. The root README now links directly to the signed source, rendered HTML,
+and desk-view screenshots. Existing export data and accepted decision 0001 are
+unchanged. Earlier GitHub issue descriptions refer to the earlier layout; its
+files remain available in the original published commits.
+
+Nine tests and the build pass after the move. The review source, its rendered
+HTML, and accepted decision 0001 are byte-for-byte identical to their
+pre-move versions. The restarted localhost preview displays the review,
+both issue links, the engineering outcomes, and desk ref DR-8V74-D6B5.
+
+The layout change is local and requires approval before publication. The
+Challenge remains unsolved.
