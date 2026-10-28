@@ -1,4 +1,4 @@
 node_modules/
 support-kb/dist/
-support-kb/.vite/
+.vite/
 .DS_Store
