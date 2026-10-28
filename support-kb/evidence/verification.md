@@ -12,10 +12,13 @@
   reports. Arrivals continue through the 4 October snapshot.
 - Accepted decision 0001 and all exported report/tenant/desk-note data match
   SHA-256 hashes from the original ZIP.
+- The later engineering update closes #4471 on 5 October 2026 with different
+  outcomes: parser fixed; hint won't fix because booking-v3 was retired. The
+  signed review now preserves both the historical counts and this later update.
 
 ## Automated checks
 
-`npm test`: seven passing tests covering membership, intake disagreement, tenant
+`npm test`: eight tests covering the engineering outcomes, membership, intake disagreement, tenant
 configuration, merge/non-merge behavior, unknown causes, symptom notes, timeline,
 signature generation, and protected export files.
 
@@ -59,8 +62,19 @@ https://github.com/matyldv/mega-dev-playground/issues/2
 
 `src/lib/data/issue-links.json` records both returned issue URLs. The rendered
 pages were rebuilt and checked for both live links, the derived desk reference,
-and every flagged symptom report. Seven tests pass.
+and every flagged symptom report.
 
-At this verification checkpoint, the KB files have not been pushed. Publication
-requires the student's separate approval. The Git author will use an explicit
-AI-harness identity rather than publish the student's configured work email.
+The initial KB was published in commit d7f2c52 using an explicit AI-harness
+identity rather than publishing the student's configured work email. The course
+accepted the tickets, then rejected closing both as completed. An approved
+read-only check found no new GitHub issue comments. Reloading the Challenge page
+revealed the engineering update that appeared after the first submission.
+
+The student separately approved reopening hint issue #2 and closing it again as
+not planned, with a public explanation citing form retirement. The parser keeps
+its completed reason because the engineering update marks it fixed.
+
+At this correction checkpoint, both closure reasons match the dated update.
+The KB correction is local and requires approval before its next push. Eight
+tests pass; the rendered page retains both issue links, all flagged symptoms,
+and the same signature-derived desk reference. The Challenge remains unsolved.

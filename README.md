@@ -8,8 +8,11 @@ Investigation of the MEGA.dev support KB export for ticket #4471.
 - GitHub issue drafts and report membership: `support-kb/evidence/`.
 - Rendered pages: `support-kb/rendered/`.
 
-The KB is a **4 October 2026 snapshot**, reviewed on **28 October 2026**. It is not
-a live connection to the support desk. Product fixes have not been applied.
+The report data is a **4 October 2026 snapshot**, reviewed on **28 October 2026**.
+The signed review also includes the course's **5 October 2026 engineering
+update**: the parser was fixed; the booking-v3 form was retired, so the hint
+was not fixed. It is not a live connection to the support desk. This repository
+contains the investigation and KB changes, not production product code.
 
 ## Reproduce
 

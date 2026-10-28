@@ -15,7 +15,9 @@ reviewed: 2026-09-30
 <Callout kind="warn">
 Historical explanation below. The <a href="/kb/incidents/4471-review">28 October signed review</a>
 supersedes its one-cause claim. Follow <a href="/kb/decisions/0002-dedupe-by-cause">decision 0002</a>
-for new reports. This snapshot does not show a shipped fix.
+for new reports. The export predates the engineering update: the desk closed
+#4471 on 5 October 2026, marking the parser fixed and the hint won't fix because
+booking-v3 was retired. See the signed review for both outcomes.
 </Callout>
 
 Since April, people have told us their bookings land on the wrong day: a month flipped. By

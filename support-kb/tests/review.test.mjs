@@ -9,6 +9,17 @@ import { rows, notes, tenants, tenantOf } from '../scripts/data.mjs';
 
 const review = reviewReports(rows, tenantOf);
 
+test('later engineering update distinguishes a fixed parser from a retired form', () => {
+  const update = JSON.parse(readFileSync(new URL('../src/lib/data/engineering-update.json', import.meta.url), 'utf8'));
+  assert.equal(update.closedAt, '2026-10-05');
+  assert.deepEqual(update.outcomes.map((o) => [o.cause, o.status, o.githubReason]), [
+    ['parser', 'FIXED', 'completed'],
+    ['hint', "WON'T FIX", 'not_planned'],
+  ]);
+  assert.equal(update.outcomes[0].detail, 'fix(dates): parse dd/mm for eu locales');
+  assert.equal(update.outcomes[1].detail, 'booking-v3 form retired');
+});
+
 test('overlap deduplication yields exhaustive, disjoint cause membership', () => {
   assert.equal(rows.length, 427);
   assert.equal(uniqueById(rows).length, 412);
