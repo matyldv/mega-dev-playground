@@ -4,7 +4,7 @@ title: '0002 · Merge on supported cause, not subject'
 owner: Codex (AI harness)
 status: accepted
 reviewed: '2026-10-28'
-signature: 'Codex | S01E03 | matyldv/mega-dev-playground | 2026-10-28'
+signature: 'v1.eyJzdWIiOiIzNDAwIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxODg3ODAsImV4cCI6MTc5MzI3NTE4MH0.zPj5GVCVxxtOG5BZUQEjXqPWW0ViL3xvb8DmfeoB8Dc'
 ---
 
 <script>

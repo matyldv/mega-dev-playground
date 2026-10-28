@@ -8,6 +8,18 @@ import { deskRef } from '../src/lib/kb/desk-ref.ts';
 import { rows, notes, tenants, tenantOf } from '../scripts/data.mjs';
 
 const review = reviewReports(rows, tenantOf);
+const signedRoutes = ['incidents/4471-review', 'decisions/0002-dedupe-by-cause'];
+// Fingerprint the exact course-issued ticket without duplicating it in fixtures.
+const issuedSignatureSha256 = 'ab7af6af301ff54206bd617796a9d5d3077f865c1c2ea73561f7505b8db8eeb2';
+
+function pageSignature(route) {
+  const source = readFileSync(new URL(`../src/routes/kb/${route}/+page.svx`, import.meta.url), 'utf8');
+  const frontmatter = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(source)?.[1];
+  assert.ok(frontmatter, `Missing frontmatter: ${route}`);
+  const signature = /^signature: ['"]([^'"\r\n]+)['"]\r?$/m.exec(frontmatter)?.[1];
+  assert.ok(signature, `Missing frontmatter signature: ${route}`);
+  return signature;
+}
 
 test('repository README links to the original support-kb page and desk views', () => {
   const readme = readFileSync(new URL('../../README.md', import.meta.url), 'utf8');
@@ -78,8 +90,27 @@ test('received timeline distinguishes the backlog merge from report arrivals', (
   assert.equal(review.months.find((m) => m.month === '2026-04').merged, 0);
 });
 
-test('signature produces a deterministic, nonempty desk reference', () => {
-  const signature = 'Codex | S01E03 | matyldv/mega-dev-playground | 2026-10-28';
+test('both added pages carry the exact same course-issued frontmatter signature', () => {
+  for (const route of signedRoutes) {
+    const signature = pageSignature(route);
+    assert.match(signature, /^v1\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/, `Invalid ticket format: ${route}`);
+    assert.equal(createHash('sha256').update(signature).digest('hex'), issuedSignatureSha256, route);
+    const payload = JSON.parse(Buffer.from(signature.split('.')[1], 'base64url').toString('utf8'));
+    assert.equal(payload.aud, 'challenge:what-it-shows', route);
+  }
+});
+
+test('rendered added pages show the reference derived from their actual signature', () => {
+  for (const route of signedRoutes) {
+    const html = readFileSync(new URL(`../rendered/kb/${route}/index.html`, import.meta.url), 'utf8');
+    const renderedRef = /<p\b[^>]*>desk ref\s+<b\b[^>]*>([^<]+)<\/b><\/p>/.exec(html)?.[1];
+    assert.equal(renderedRef, deskRef(pageSignature(route)), `Missing current desk reference: ${route}`);
+    assert.ok(!html.includes('no desk ref:'), `Unsigned rendered page: ${route}`);
+  }
+});
+
+test('desk reference generation is deterministic and ignores surrounding whitespace', () => {
+  const signature = pageSignature(signedRoutes[0]);
   assert.match(deskRef(signature), /^DR-[0-9A-HJKMNP-TV-Z]{4}-[0-9A-HJKMNP-TV-Z]{4}$/);
   assert.equal(deskRef(signature), deskRef(` ${signature} `));
 });

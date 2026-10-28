@@ -102,3 +102,32 @@ restored localhost review.
 
 This restoration is local and requires approval before publication. The
 Challenge remains unsolved.
+
+## Course-issued signature correction
+
+The restored layout and cache cleanup were published through commit ad2db10.
+The later `start-challenge` reply confirmed that the course-issued `ticket`
+must appear exactly as `signature:` in each added page's frontmatter. A
+human-readable author string is not that proof.
+
+Both the incident review and decision 0002 now carry this student's own issued
+value. A private, ignored proof file retains it under its original `ticket`
+key; the request/reply log masks it. No reference repository signature was
+copied. The course states that this value remains valid on the page after
+its expiry.
+
+`npm run evidence` and `npm run build` succeed. All **11 tests pass**.
+The new checks read both pages' actual frontmatter, compare SHA-256 against the
+issued ticket's fingerprint, check its format and audience, and verify that
+each rendered stamp matches its source signature. They do not claim to verify
+the course's cryptographic signature locally.
+
+Both rebuilt pages now show **DR-6RFX-5Q10**. Their HTML differs from the previous
+build only in that derived reference. The localhost review was reloaded and
+visually checked; `review-signature-preview.jpg` now shows the corrected stamp.
+Protected exported data and accepted decision 0001 still pass their original
+hash checks. Project paths and the build pipeline are unchanged.
+
+The student approved committing and pushing this signature correction.
+No GitHub issues were changed in this correction. The Challenge remains
+unsolved until the course accepts a new submission.

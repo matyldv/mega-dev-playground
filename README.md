@@ -16,6 +16,9 @@ The KB project uses the original `support-kb/` layout:
 `support-kb/src/routes/kb/` contains its pages, and `support-kb/rendered/kb/`
 contains their compiled desk views. Report and tenant data are unchanged.
 These paths also match the links in the GitHub issues.
+Both added pages use the exact MEGA.dev-issued ticket as their frontmatter
+signature, not the author's name. Their rendered desk reference is derived
+from that value.
 
 The report data is a **4 October 2026 snapshot**, reviewed on **28 October 2026**.
 The signed review also includes the course's **5 October 2026 engineering
